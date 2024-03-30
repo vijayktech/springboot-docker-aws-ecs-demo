@@ -30,7 +30,30 @@ Steps
 3. Attach Task definitaion the above to Cluster
    Create Security group and allow all traffic
 
+4. To Build jar using AWS CodeBuild then add below file in the root directory of Project.
 
+### Buildspec.yml 
+```
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      java: corretto17
+  pre_build:
+    commands:
+      - echo Nothing to do in the pre_build phase...
+  build:
+    commands:
+      - echo Build started on `date`
+      - mvn clean install
+  post_build:
+    commands:
+      - echo Build completed on `date`
+artifacts:
+  files:
+    - target/springboot-docker-aws-ecs-demo.jar
+```
 
 
    
